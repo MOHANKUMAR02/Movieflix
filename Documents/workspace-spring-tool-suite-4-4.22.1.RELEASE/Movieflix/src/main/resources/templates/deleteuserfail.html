@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Delete Account</title>
+<style>
+p{
+color: red;
+}
+body {
+	font-family: Arial, sans-serif;
+	background-color: #f4f4f4;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+
+.container {
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 8px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	width: 100%;
+	max-width: 400px;
+	text-align: center;
+}
+
+h2 {
+	color: #333;
+	margin-bottom: 20px;
+}
+
+label {
+	display: block;
+	margin-bottom: 10px;
+	font-size: 16px;
+	color: #555;
+}
+
+input[type="email"] {
+	width: calc(100% - 22px);
+	/* Adjust width to account for padding and border */
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	font-size: 16px;
+	margin-bottom: 20px;
+	box-sizing: border-box; /* Ensure padding is included in width */
+}
+
+input[type="submit"] {
+	padding: 10px 20px;
+	font-size: 16px;
+	color: #fff;
+	background-color: #007bff;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+	background-color: #0056b3;
+}
+</style>
+</head>
+<body>
+	<div class="container">
+		<p>Please enter your Valid email ID to proceed with account deletion.</p>
+		<h2>Delete Your Account</h2>
+		<form action="map_deleteAccount" method="get">
+			<label for="emailId">Enter the Email ID:</label> <input type="email"
+				id="emailId" name="emailId" required> <input type="submit"
+				value="DELETE">
+		</form>
+	</div>
+</body>
+</html>

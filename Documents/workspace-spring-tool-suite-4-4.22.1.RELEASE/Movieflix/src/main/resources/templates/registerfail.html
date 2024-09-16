@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Already Registered</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 2em;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        h2 {
+            color: #ff6347;
+        }
+        a {
+            text-decoration: none;
+        }
+        input[type="submit"] {
+            display: inline-block;
+            padding: 0.75em 1.5em;
+            margin: 0.5em;
+            background-color: #ff6347;
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            font-size: 1em;
+            transition: background-color 0.3s;
+        }
+        input[type="submit"]:hover {
+            background-color: #e5533d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>User is already Registered. Kindly Login.</h2>
+        <a href="register"><input type="submit" value="Register"></a>
+        <br><br>
+        <a href="login"><input type="submit" value="Login"></a>
+    </div>
+</body>
+</html>

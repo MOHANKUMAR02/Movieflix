@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Update Movies Page</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    .container {
+        width: 100%;
+        max-width: 600px;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h3 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 20px;
+    }
+    label {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 16px;
+        color: #333;
+    }
+    input[type="text"], input[type="number"], select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        color: #fff;
+        background-color: #007bff;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    input[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <h3>Enter Movie Details to Update</h3>
+        <form action="map-UpdateMovies" method="post">
+            <label for="movieid">Movie Id</label>
+            <input type="number" id="movieid" name="movieid" required>
+            
+            <label for="movieName">Movie Name</label>
+            <input type="text" id="movieName" name="movieName" required>
+            
+            <label for="link">Movie Link</label>
+            <input type="text" id="link" name="link" required>
+            
+            <label for="genres">Genres</label>
+            <select id="genres" name="genres" required>
+                <option value="">Select Genre</option>
+                <option>Action</option>
+                <option>Crime</option>
+                <option>Drama</option>
+                <option>Fantasy</option>
+                <option>Horror</option>
+                <option>Comedy</option>
+                <option>Romance</option>
+                <option>Science Fiction</option>
+                <option>Sports</option>
+                <option>Thriller</option>
+                <option>Mystery</option>
+                <option>War</option>
+                <option>Western</option>
+            </select>
+            
+            <label for="cast">Cast</label>
+            <input type="text" id="cast" name="cast" required>
+            
+            <label for="director">Director</label>
+            <input type="text" id="director" name="director" required>
+            
+            <input type="submit" value="UPDATE MOVIE">
+        </form>
+    </div>
+</body>
+</html>

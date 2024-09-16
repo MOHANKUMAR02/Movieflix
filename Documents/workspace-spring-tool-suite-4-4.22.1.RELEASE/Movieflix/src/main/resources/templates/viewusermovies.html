@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.com">
+<head>
+<meta charset="ISO-8859-1">
+<title>View All Movies</title>
+<style>
+body {
+	background-color: black;
+	color: white;
+	font-size: 20px;
+	font-family: sans-serif;
+}
+
+h2 {
+	text-align: center;
+}
+
+.movie-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+	grid-gap: 20px;
+}
+
+.movie-item {
+	text-align: center;
+	border-radius: 1px solid #ccc;
+	border-radius: 4px;
+	padding: 10px;
+}
+
+.movie-item iframe {
+	width: 100%;
+	height: 200px;
+}
+
+#movielogo {
+	width: 110px;
+}
+
+h2 {
+	margin-top: -80px;
+}
+</style>
+</head>
+<body>
+	
+	<h2>
+		View All <span style="color: rgb(255, 51, 51)">Movies</span> Here
+	</h2>
+	<div class="movie-grid">
+		<div th:each="viewAllMovies: ${viewAllMovies}" class="movie-item">
+			<h3 th:text="${viewAllMovies.movieName}">Movie Name</h3>
+			<div th:Utext="${viewAllMovies.link}"></div>
+		</div>
+		
+	</div>
+</body>
+</html>

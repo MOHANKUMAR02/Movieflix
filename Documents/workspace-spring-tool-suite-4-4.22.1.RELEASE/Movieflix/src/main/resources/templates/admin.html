@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - MovieFlix</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            max-width: 400px;
+            text-align: center;
+        }
+        h3 {
+            font-size: 36px;
+            color: #ff6347;
+            margin-bottom: 10px;
+        }
+        p {
+            margin-bottom: 30px;
+        }
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .button-container a {
+            text-decoration: none;
+        }
+        .button {
+            display: block;
+            background-color: #ff6347;
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            text-align: center;
+            width: 100%;
+            max-width: 300px;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #e5533d;
+        }
+        .logout-button {
+            background-color: #ff4500;
+        }
+        .logout-button:hover {
+            background-color: #e03e00;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3>Admin Dashboard</h3>
+        <p>Manage your users and movies</p>
+        <div class="button-container">
+            <a href="viewusers" class="button">View Users</a>
+            <a href="addmovie" class="button">Add Movies</a>
+            <a href="viewmovies" class="button">View Movies</a>
+            <a href="map-Logout" class="button logout-button">Logout</a>
+        </div>
+    </div>
+</body>
+</html>
