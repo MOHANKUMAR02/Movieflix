@@ -1,5 +1,8 @@
 package com.project.bank_app.Services;
 
+import java.util.List;
+import java.util.Map;
+
 import com.project.bank_app.Entity.User;
 import com.project.bank_app.Repository.UserRepository;
 
@@ -40,6 +43,26 @@ public class UserServices {
 	public void viewAllTransation(String userId)
 	{
 	  userRepository.viewAllTransation(userId);	
+	}
+	
+	public void raiseCheckBookRequest(String userId)
+	{
+		userRepository.raiseCheckBookRequest(userId);
+	}
+	
+	public Map< String, Boolean> getAllCheckBookRequest()
+	{
+		return userRepository.getAllCheckBookRequest();
+	}
+
+	public List<String> getAllUsersCheckBookRequest()
+	{
+		return userRepository.getAllUsersCheckBookRequest();
+	}
+
+	public void approveCheckBookRequest(String userId)
+	{
+		userRepository.approveCheckBookRequest(userId);
 	}
 
 

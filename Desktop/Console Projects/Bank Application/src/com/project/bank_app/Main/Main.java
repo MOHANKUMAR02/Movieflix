@@ -17,70 +17,118 @@ public class Main {
 
 		while(true) {
 
-			System.out.println("Enter your User Id");
-			String userId = scan.next();
+			try {
+				System.out.println("Enter your User Id");
+				String userId = scan.next();
 
-			System.out.println("Enter your Password");
-			String password = scan.next();
+				System.out.println("Enter your Password");
+				String password = scan.next();
 
-			User user= userServices.loginCheck(userId, password);
+				User user= userServices.loginCheck(userId, password);
 
-			if(user!=null && user.getRole().equals("admin")){ 
+				if(user!=null && user.getRole().equals("admin")){ 
 
-				main.initadmin();		
+					main.initadmin();		
+				}
+				else if(user!=null && user.getRole().equals("user")) {
+
+					main.initCustomer(user);
+				}
+				else {
+
+					System.out.println("Please check your Credentials.....");
+				}
 			}
-			else if(user!=null && user.getRole().equals("user")) {
-
-				main.initCustomer(user);
+			catch (InputMismatchException e) {
+				System.out.println("Please Check Your Input, Enter the valid data.....");
 			}
-			else {
-
-				System.out.println("Please check your Credentials");
+			catch (Exception e) {
+				e.printStackTrace();
 			}
 		}
 	}
 
 	private void initadmin()
 	{
+		String user = "";
 		boolean flag = true;
 
 		while(flag) {
 
-			System.out.println("1. Create User Account");
-			System.out.println("2. Exit/logout");
-			System.out.println("3. View All Transation");
-			System.out.println("4. Check User Account Balance");
-			System.out.println("Enter Your option");
+			try
+			{
 
-			int enteredOption = scan.nextInt();
+				System.out.println("1. Create User Account");
+				System.out.println("2. Exit/logout");
+				System.out.println("3. View All Transation");
+				System.out.println("4. Check User Account Balance");
+				System.out.println("5. Approve Check Book Request");
+				System.out.println("Enter Your option");
 
-			switch(enteredOption) {
+				int enteredOption = scan.nextInt();
 
-			case 1: createNewUserAccount();
+				switch(enteredOption) {
 
-			System.out.println();
-			System.out.println("--------------- Task Completed ---------------------");
 
-			break;
+				case 1: createNewUserAccount();
 
-			case 2: flag = false;
-			System.out.println("\"thank you for using our service...\" Successfully logged out");
+				System.out.println();
+				System.out.println("--------------- Task Completed ---------------------");
 
-			System.out.println();
-			System.out.println("--------------- Task Completed ---------------------");
+				break;
 
-			break;
+				case 2: flag = false;
+				System.out.println("\"thank you for using our service...\" Successfully logged out.....");
 
-			case 3: System.out.println("Enter the User Id");
-			String user = scan.next();
-			viewAllTransation(user);
+				System.out.println();
+				System.out.println("--------------- Task Completed ---------------------");
 
-			break;
+				break;
 
-			default: System.out.println("Please enter valid option...");
-			break;
+				case 3: System.out.println("Enter the User Id");
+				user = scan.next();
+				viewAllTransation(user);
+				System.out.println();
+				System.out.println("--------------- Request Successful ---------------------");
+				break;
+
+				case 4 : System.out.println("Enter user Id");
+				user = scan.next();
+				Double balance = checkAccountBalance(user);
+
+				System.out.println("Account balance is : "+ balance);
+				System.out.println();
+				System.out.println("--------------- Request Successful ---------------------");
+				break;
+
+				case 5: List<String> userIds = getAllUsersCheckBookRequest();
+
+				System.out.println("please Select below user");
+				System.out.println(userIds);
+
+				user = scan.next();
+
+				approveCheckBookRequest(user);
+				System.out.println("Approved Successfully");
+				System.out.println();
+				System.out.println("--------------- Request Successful ---------------------");
+				break;
+
+
+				default: System.out.println("Please enter valid option.....");
+				break;
+				}
+
 			}
+			catch (InputMismatchException e) {
+				System.out.println("Please Check Your Input, Enter the valid data.....");
+			}
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+
 		}
+
 	}
 
 	private void initCustomer(User user)
@@ -89,111 +137,163 @@ public class Main {
 
 		while(flag) {
 
-			System.out.println("1. Exit/logout");
-			System.out.println("2. Check Account Balance");
-			System.out.println("3. Fund Transfer ");
-			System.out.println("4. See All Transation");
-
-			int selectedOption = scan.nextInt();
-
-			switch(selectedOption)
+			try
 			{
+				System.out.println("1. Exit/logout");
+				System.out.println("2. Check Account Balance");
+				System.out.println("3. Fund Transfer ");
+				System.out.println("4. See All Transation");
+				System.out.println("5. Raise Check Book Request");
 
-			case 1: flag = false;
+				int selectedOption = scan.nextInt();
 
-			System.out.println("\"Thank you for using our service\" Successfully logged out...");
-			System.out.println();
-			System.out.println("--------------- Request Successful ---------------------");
-			break;
-
-			case 2: Double balance = checkAccountBalance(user.getUserId());
-
-			System.out.println("Your Account balance is : "+ balance);
-
-			System.out.println();
-			System.out.println("--------------- Request Successful ---------------------");
-
-			break;
-
-			case 3:  boolean Checkflag = true;
-
-			while(Checkflag)
-			{
-				System.out.println("Enter User Id");
-				String payee = scan.next();
-
-				if(user.getUserId().equals(payee))
+				switch(selectedOption)
 				{
-					System.out.println("Please check both the Your Id -- "+ user.getUserId() + " and Receiver Id-- " + payee+ ", are same...");
-					break;
-				}
-				else
+
+				case 1: flag = false;
+
+				System.out.println("\"Thank you for using our service\" Successfully logged out.....");
+				System.out.println();
+				System.out.println("--------------- Request Successful ---------------------");
+				break;
+
+				case 2: Double balance = checkAccountBalance(user.getUserId());
+
+				System.out.println("Your Account balance is : "+ balance);
+
+				System.out.println();
+				System.out.println("--------------- Request Successful ---------------------");
+
+				break;
+
+				case 3:  boolean Checkflag = true;
+
+				while(Checkflag)
 				{
-					User userVerfication = getUser(payee);
+					System.out.println("Enter User Id");
+					String payee = scan.next();
 
-					if(userVerfication != null){
+					if(user.getUserId().equals(payee))
+					{
+						System.out.println("Please check both the Your Id -- "+ user.getUserId() + " and Receiver Id-- " + payee+ ", are same...");
+						break;
+					}
+					else
+					{
+						User userVerfication = getUser(payee);
 
-						Checkflag = false;
+						if(userVerfication != null){
 
-						System.out.println("Enter the Amount");
-						double amount = scan.nextDouble();
+							Checkflag = false;
 
-						double Accountbalance = user.getAccountBalance();
+							System.out.println("Enter the Amount");
+							double amount = scan.nextDouble();
 
-						if( Accountbalance>= amount){
+							double Accountbalance = user.getAccountBalance();
 
-							transferAmount(user.getUserId(),payee,amount);
+							if( Accountbalance>= amount){
+
+								transferAmount(user.getUserId(),payee,amount);
+							}
+							else {
+
+								System.out.println("Insufficient Balance : "+ Accountbalance);
+							}
 						}
 						else {
 
-							System.out.println("Insufficient Balance : "+ Accountbalance);
+							System.out.println("Please Enter Valid User Id.....");
 						}
 					}
-					else {
+				}
+				System.out.println();
+				System.out.println("--------------- Request Successful ---------------------");
+				break;
 
-						System.out.println("Please Enter Valid User Id...");
+				case 4: viewAllTransation(user.getUserId());
+				System.out.println();
+				System.out.println("--------------- Request Successful ---------------------");
+				break;
+
+				case 5 : 
+					String userId = user.getUserId();
+					Map< String, Boolean> map = getAllCheckBookRequest();
+
+					if(map.containsKey(userId) && map.get(userId))
+					{
+						System.out.println("You had raised an request already and successfully Approved.....");
 					}
+					else if(map.containsKey(userId) && !map.get(userId))
+					{
+						System.out.println("You had raised an request already and pending for Approval.....");
+					}
+					else 
+					{	
+						raiseCheckBookRequest(userId);
+						System.out.println("Request Raised successfully.....");
+					}
+					System.out.println();
+					System.out.println("--------------- Request Successful ---------------------");
+					break;
+
+				default: System.out.println("Please enter valid option.....");
+				break;
 				}
 			}
-			break;
-			case 4: viewAllTransation(user.getUserId());
-			break;
-
-			default: System.out.println("Please enter valid option...");
-			break;
+			catch (InputMismatchException e) {
+				System.out.println("Please Check Your Input, Enter the valid data.....");
 			}
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+
 		}
 	}
 
 	private void createNewUserAccount()
 	{
-		System.out.println("Enter your Id");
-		String userId = scan.next();
+		try
+		{
+			boolean flag = true;
+			System.out.println("Enter your Id");
+			String userId = scan.next();
 
-		scan.nextLine();
-		System.out.println("Enter your Name");
-		String name = scan.nextLine();
+			if(getUser(userId)!=null)
+			{
+				System.out.println(" \"user is already Present.\" Creation Failed..... ");
+			}
+			else
+			{
+				scan.nextLine();
+				System.out.println("Enter your Name");
+				String name = scan.nextLine();
 
-		System.out.println("Enter your Contact Number");
-		long contact = scan.nextLong();
+				System.out.println("Enter your Contact Number");
+				long contact = scan.nextLong();
 
-		System.out.println("Enter your Password");
-		String password = scan.next();
+				System.out.println("Enter your Password");
+				String password = scan.next();
 
-		scan.nextLine();
-		System.out.println("Enter your Address");
-		String address = scan.nextLine();
+				scan.nextLine();
+				System.out.println("Enter your Address");
+				String address = scan.nextLine();
 
-		Boolean result = userServices.createNewUserAccount(userId, name, password, contact, address);
+				Boolean result = userServices.createNewUserAccount(userId, name, password, contact, address);
 
-		if(result){
+				if(result){
 
-			System.out.println("New User Created Successfully...");
+					System.out.println("New User Created Successfully...");
+				}
+			}
+
 		}
-		else{
-
-			System.out.println(" \"user is already Present.\" Creation Failed... ");
+		catch (InputMismatchException e) {
+			System.out.println("Please Check Your Input, Enter the valid data.....");
 		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	private Double checkAccountBalance(String userId)
@@ -211,16 +311,36 @@ public class Main {
 		boolean result = userServices.transferAmount(userId, payeeId, amount);
 
 		if(result){
-			System.out.println("Amount Transfer Successful...");
+			System.out.println("Amount Transfer Successful.....");
 		}
 		else{
-			System.out.println("Amount Transfer Failed...");
+			System.out.println("Amount Transfer Failed.....");
 		}
 	}
 
-	public void viewAllTransation(String userId)
+	private void viewAllTransation(String userId)
 	{
 		userServices.viewAllTransation(userId);
 	}
 
+	private void raiseCheckBookRequest(String userId)
+	{
+		userServices.raiseCheckBookRequest(userId);
+	}
+
+	private Map< String, Boolean> getAllCheckBookRequest()
+	{
+		return userServices.getAllCheckBookRequest();
+	}
+
+	private List<String> getAllUsersCheckBookRequest()
+	{
+		return userServices.getAllUsersCheckBookRequest();
+	}
+
+	private void approveCheckBookRequest(String userId)
+	{
+		userServices.approveCheckBookRequest(userId);
+	}
 }
+

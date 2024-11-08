@@ -2,8 +2,11 @@ package com.project.bank_app.Repository;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -14,6 +17,7 @@ public class UserRepository {
 
 	private static  Set<User> users = new HashSet<>();
 	private static List<Transaction> transactions = new ArrayList<Transaction>();
+	private Map< String, Boolean> checkBookRequest = new HashMap<>();
 
 
 	static {
@@ -172,7 +176,40 @@ public class UserRepository {
 		System.out.println();
 		System.out.println("--------------------------------------------------------------------------------------1");
 	}
-	
+
+	public void raiseCheckBookRequest(String userId)
+	{
+		checkBookRequest.put(userId, false);
+	}
+
+	public Map< String, Boolean> getAllCheckBookRequest()
+	{
+		return checkBookRequest;
+	}
+
+	public List<String> getAllUsersCheckBookRequest()
+	{
+		ArrayList<String> userIds = new ArrayList<>();
+
+		for( Map.Entry<String, Boolean> entry : checkBookRequest.entrySet())
+		{
+			if(!entry.getValue())
+			{
+				userIds.add(entry.getKey());
+			}
+		}
+
+		return userIds;
+	}
+
+	public void approveCheckBookRequest(String userId)
+	{
+		if(checkBookRequest.containsKey(userId))
+
+			checkBookRequest.put(userId, true);
+
+	}
+
 
 
 }
